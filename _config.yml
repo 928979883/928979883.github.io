@@ -67,7 +67,7 @@ gitalk:
   clientSecret: 0ca2c5085f50c928af89d0e80666d32f44c23ddd
   repo: 928979883.github.io
   owner: 928979883
-  protocol: 'https'
+  proxy: "http://pigass.cn/proxy/https://github.com/login/oauth/access_token"
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 #google_analytics: 
