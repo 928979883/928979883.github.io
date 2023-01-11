@@ -3,6 +3,7 @@ layout: post
 title: "基于Github的个人博客搭建教程"
 date:   2023-01-10
 tags: [createBlog]
+toc: true
 comments: false
 author: zhouyu
 ---
@@ -78,7 +79,7 @@ author: zhouyu
 
 ## 配置文件(_config.yml)
 
-1. 配置gitalk
+### 配置gitalk
 
 这个是评论功能的配置。评论功能基于gitalk，在配置文件中找到gitalk配置项目：
 
@@ -95,20 +96,16 @@ gitalk:
 ![创建gitalk](https://raw.githubusercontent.com/928979883/928979883.github.io/master/images/2023-01-10-createBlog/gitalk.png)
 
 
-### Google站长统计
+### 配置访问统计
 
-首先你要去注册一个[Google Analytics]( https://analytics.google.com/analytics/ )账号，它可以统计你博客网站的访问人数，访问来源等非常丰富的网站数据。如果你不在乎可以不用跳过这节。不过要把配置中我的`google_analytics: UA-XXXXXXX-X`删除，**否则统计到我的去了**。
+1. 注册一个[Google Analytics]( https://analytics.google.com/analytics/ )账号，它可以统计你博客网站的访问人数，访问来源等非常丰富的网站数据。如果你不在乎可以不用跳过这节。不过要把配置中我的`google_analytics: UA-XXXXXXX-X`删除，**否则统计到我的去了**。由于不可描述的原因，国内注册账号可能会遇到问题，所有不配置也没关系。
 
 ```
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics: UA-XXXXXXX-X
 ```
 
-下面是我的网站实时分析页面展示：
-
 ![google分析页面](https://raw.githubusercontent.com/928979883/928979883.github.io/master/images/2023-01-10-createBlog/google.png)
-
-由于不可描述的原因，国内注册账号可能会遇到问题，所有不配置也没关系。
 
 ## 博客更新
 
@@ -118,26 +115,21 @@ google_analytics: UA-XXXXXXX-X
 4. git page会自动从你的git仓库拉去解析成网页
 
 
-#### 常见错误
+## 常见错误
 
 - 缺少某个包
+缺少jekyll-paginate，安装即可`gem install jekyll-paginate`若还提示缺少就装啥。
 
-![jekyll_error](https://github.com/928979883/928979883.github.io/raw/master/images/2023-01-10-createBlog/jekyll_error.PNG)
-
-如图，缺少jekyll-paginate，安装即可`gem install jekyll-paginate`若还提示缺少就装啥。
-
-![jekyll_server_erro错误2](https://github.com/928979883/928979883.github.io/raw/master/images/2023-01-10-createBlog/jekyll_server_erro%E9%94%99%E8%AF%AF2.PNG)
-
-- Permission denied
-
-出现这个错误一般是4000端口被占用了，解决方法：
-
-1.  netstat -ano|findstr "4000" 找到占用4000端口的进程ID即为PID
-
-2. 打开windows资源管理器，结束该进程.
-
-3. tasklist|findstr 312964 也能查看进程名，查到结束掉他同步骤2.
-   
+- Permission denied 出现这个错误一般是4000端口被占用了
+	1.  找到占用4000端口的进程ID即为PID
+	```
+	netstat -ano|findstr "4000"
+	```
+	2. 打开windows资源管理器，结束该进程.
+	3.  也能查看进程名，查到结束掉他同步骤2.
+	```
+	tasklist|findstr 312964
+	```
 
 ## 搜索功能集成
 
@@ -148,47 +140,32 @@ google_analytics: UA-XXXXXXX-X
 3. 下载simple-jekyll-searchj文件
 	1. [下载这整个文件夹](https://github.com/christian-fei/Simple-Jekyll-Search/tree/master/example/js)，里面包含simple-jekyll-search.min.js和simple-jekyll-search.js两个文件，连同js文件夹放在你的根目录下面。
 4. 配置搜索框标签
-	1. 在你想展示搜索框的页面我的是index.html，这个页面和每个人的博客模板有关，可能需要一点前端知识，添加如下的html标签。
-```html
-<div class="search-container">
-  <input type="text" id="search-input" placeholder="search blog posts...">
-  <ul id="results-container"></ul>
-</div>
+	1. 展示搜索框的页面我的是index.html，这个页面和每个人的博客模板有关，可能需要一点前端知识，添加如下的html标签。
+	```
+		<div class="search-container">
+			<input type="text" id="search-input" placeholder="search blog posts...">
+			<ul id="results-container"></ul>
+		</div>
 
-<!--script src="https://unpkg.com/simple-jekyll-search/dest/simple-jekyll-search.min.js"></script-->
-<script src="{{ site.baseurl }}/js/simple-jekyll-search.min.js"></script>
+		<!-- 以下两个是二选一的，一个是用云端的js一个是用本地的js如果本地有的话 -->
+		<!--script src="https://unpkg.com/simple-jekyll-search/dest/simple-jekyll-search.min.js"></script-->
+		<script src="{{ site.baseurl }}/js/simple-jekyll-search.min.js"></script>
 
-<script>
-	window.simpleJekyllSearch = new SimpleJekyllSearch({
-	searchInput: document.getElementById('search-input'),
-	resultsContainer: document.getElementById('results-container'),
-	json: '{{ site.baseurl }}/search.json',
-	searchResultTemplate: '<li><a href="{url}?query={query}" title="{desc}">{title}</a></li>',
-	noResultsText: 'No results found',
-	limit: 10,
-	fuzzy: false,
-	exclude: ['Welcome']
-  })
-</script>
-```
-
-其中，以下两个是二选一的，一个是用云端的js一个是用本地的js如果本地有的话。
-
-`<script src="https://unpkg.com/simple-jekyll-search/dest/simple-jekyll-search.min.js"></script--> `
-
-`<script src="{{ site.baseurl }}/js/simple-jekyll-search.min.js"></script>`
-
-配置完成，打开博客，你得到这样一个搜索框。
-
-![search_block](https://raw.githubusercontent.com/928979883/928979883.github.io/master/images/2023-01-10-createBlog/search_block.png)
-
-## 搜索框样式
-
-搜索框的样式是可以改变的，这里有修改HTML中CSS样式的方法，我搞后端的，前端现学现卖。
-
-[html插入标签样式方法](https://blog.csdn.net/u014103733/article/details/72961366)
-
-
+		<script>
+			window.simpleJekyllSearch = new SimpleJekyllSearch({
+			searchInput: document.getElementById('search-input'),
+			resultsContainer: document.getElementById('results-container'),
+			json: '{{ site.baseurl }}/search.json',
+			searchResultTemplate: '<li><a href="{url}?query={query}" title="{desc}">{title}</a></li>',
+			noResultsText: 'No results found',
+			limit: 10,
+			fuzzy: false,
+			exclude: ['Welcome']
+			})
+		</script>
+	```
+	2. 配置完成，打开博客，你得到这样一个搜索框。
+	![search_block](https://raw.githubusercontent.com/928979883/928979883.github.io/master/images/2023-01-10-createBlog/search_block.png)
 
 ## 社交链接
 
@@ -254,12 +231,6 @@ footer-links:
 </div>
 ```
 
-### style标签说明
-
-可以通过style标签改变字体颜色与大小。具体参考:[html颜色表](http://xh.5156edu.com/page/z1015m9220j18754.html)和[html style属性](https://www.geeksforgeeks.org/html-style-attribute/)
-
-eg.  `style="font-family:arial;color:Gainsboro;font-size:10px; text-align:right;width:200px;background-color:gray;`
-
 ## 修改博客主题颜色
 
 博客使用开源的颜色表[Open Color](https://yeun.github.io/open-color/)，博客主题的可选颜色有：
@@ -271,10 +242,6 @@ eg.  `style="font-family:arial;color:Gainsboro;font-size:10px; text-align:right;
 ## 显示文章目录
 
 在文章开头信息中心增加 `toc: true` 描述即可打开文章目录显示。效果如下：
-
-![文章带目录](https://i.loli.net/2020/07/12/TFlRj3kBdpocY9K.png)
-
-
 
 ## 如何传图片
 
@@ -291,7 +258,6 @@ PicGo支持图片上传github、SM.MS图床、阿里云、腾讯云等主流图�
 [好用的github插件](https://blog.csdn.net/u012702547/article/details/100533763)
 
 
-
 ## 网站结构
 
 根目录的index.html生成blog首页
@@ -300,14 +266,8 @@ _include/footer.html生成侧边栏
 
 _include/svg-icons.html生成社交头像的链接
 
+### 注意事项
 
+**指导文章：Lemon[这篇文章]( https://lemonchann.github.io/create_blog_with_github_pages/)**
 
-## 致谢
-
-感谢 [Jekyll](https://www.jekyll.com.cn/) 提供的技术支持才能有这个博客。
-
-感谢 [LOFFER ](https://fromendworld.github.io/LOFFER/document/)提供的原始模板，我在其上进行的二次开发。
-
-**我的个人技术公众号「后端技术学堂」分享、记录、成长，扫码添加，一起学习，共同成长。**
-
-![公众号二维码](https://upload-images.jianshu.io/upload_images/7842464-15f939ec039690f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+**原始主题模板：Jekyll[LOFFER](https://fromendworld.github.io/LOFFER/)**
