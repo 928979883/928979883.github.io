@@ -18,3 +18,12 @@
 <meta property="og:site_name" content="{{ site.name }}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+
+{# 社交分享优化：Twitter Card + 分享图 + 语言 #}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@{{ site.footer-links.github }}" />
+<meta property="og:image" content="{{ site.url }}{{ site.avatar }}" />
+<meta property="og:image:alt" content="{{ site.name }}" />
+<meta property="og:locale" content="zh_CN" />
+<meta property="article:author" content="{{ site.name }}" />
+<link rel="canonical" href="{{ site.url }}{{ page.url }}" />
