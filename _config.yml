@@ -8,12 +8,15 @@ baseurl: ""
 permalink: /:year/:month/:day/:title/
 
 # 站点元信息
-avatar: /images/favicon.png
-favicon: /images/favicon.png
+avatar: /images/favicon.svg
+favicon: /images/favicon.svg
 
-# 页脚社交链接（仅保留 GitHub 和 RSS）
+# 社交链接（用于首页 Hero 与页脚）
 footer-links:
   github: 928979883
+  email: 928979883@qq.com
+  weibo: zhouyuworld
+  zhihu: dian-hua-ju-zi
   rss: true
 
 # Jekyll 配置

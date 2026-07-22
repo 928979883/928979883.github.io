@@ -2,14 +2,24 @@
 layout: default
 ---
 
+<section class="hero">
+  <img class="hero-avatar" src="{{ site.baseurl }}/images/favicon.svg" alt="{{ site.name }}" loading="eager" />
+  <h1 class="hero-title">{{ site.name }}</h1>
+  <p class="hero-subtitle">{{ site.description }}</p>
+  <div class="hero-social">
+    {% include svg-icons.html %}
+  </div>
+</section>
+
 <div class="search-section">
-  <input class="search-input" type="text" id="search-input" placeholder="Search blog posts..." aria-label="搜索文章">
+  <input class="search-input" type="text" id="search-input" placeholder="搜索文章…" aria-label="搜索文章">
   <ul class="search-results" id="results-container"></ul>
 </div>
 
 <div class="posts-list">
+  <h2 class="section-title">最新文章</h2>
   {% for post in paginator.posts %}
-    <article class="post-card">
+    <article class="post-card reveal">
       <h2 class="post-card-title">
         <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
       </h2>
@@ -33,7 +43,7 @@ layout: default
         {% endif %}
       </p>
 
-      <a class="read-more" href="{{ site.baseurl }}{{ post.url }}">Read More</a>
+      <a class="read-more" href="{{ site.baseurl }}{{ post.url }}">阅读全文</a>
     </article>
   {% endfor %}
 </div>

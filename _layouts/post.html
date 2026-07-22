@@ -17,8 +17,15 @@ layout: default
     </div>
   </header>
 
-  <div class="entry">
-    {{ content }}
+  <div class="post-layout">
+    <div class="entry">
+      {{ content }}
+    </div>
+
+    <aside class="toc-wrapper">
+      <div class="toc-title">目录</div>
+      <div id="toc"></div>
+    </aside>
   </div>
 
   <footer class="post-footer">

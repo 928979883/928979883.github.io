@@ -4,58 +4,64 @@
 
 // CSS Custom Properties for light/dark mode
 :root {
-  --color-bg: #ffffff;
-  --color-bg-soft: #f8f9fa;
-  --color-bg-mute: #f1f3f5;
-  --color-text: #2d3436;
-  --color-text-soft: #636e72;
-  --color-text-mute: #b2bec3;
-  --color-border: #e9ecef;
-  --color-primary: #2563eb;
-  --color-primary-soft: #3b82f6;
-  --color-primary-bg: rgba(37, 99, 235, 0.08);
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
+  --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  --gradient-soft: linear-gradient(135deg, #6366f1, #ec4899);
+  --color-bg: #fafafa;
+  --color-bg-soft: #f1f1f4;
+  --color-bg-mute: #e8e8ee;
+  --color-surface: #ffffff;
+  --color-text: #1a1a2e;
+  --color-text-soft: #4a4a68;
+  --color-text-mute: #9a9ab0;
+  --color-border: #e8e8ee;
+  --color-primary: #7c3aed;
+  --color-primary-soft: #8b5cf6;
+  --color-primary-bg: rgba(124, 58, 237, 0.08);
+  --color-accent: #ec4899;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(99, 102, 241, 0.12);
+  --shadow-lg: 0 16px 48px rgba(99, 102, 241, 0.18);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
   --font-serif: "Noto Serif", "PT Serif", "Songti SC", SimSun, serif;
-  --font-mono: "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
-  --transition: 0.2s ease;
+  --font-mono: "JetBrains Mono", "Fira Code", Menlo, Monaco, Consolas, "Courier New", monospace;
+  --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="dark"] {
-  --color-bg: #0f172a;
-  --color-bg-soft: #1e293b;
-  --color-bg-mute: #334155;
-  --color-text: #f1f5f9;
-  --color-text-soft: #94a3b8;
-  --color-text-mute: #64748b;
-  --color-border: #334155;
-  --color-primary: #60a5fa;
-  --color-primary-soft: #93c5fd;
-  --color-primary-bg: rgba(96, 165, 250, 0.12);
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
+  --color-bg: #0d0d17;
+  --color-bg-soft: #15151f;
+  --color-bg-mute: #1f1f2e;
+  --color-surface: #15151f;
+  --color-text: #e8e8f0;
+  --color-text-soft: #a8a8c0;
+  --color-text-mute: #6a6a85;
+  --color-border: #26263a;
+  --color-primary: #a78bfa;
+  --color-primary-soft: #c4b5fd;
+  --color-primary-bg: rgba(167, 139, 250, 0.14);
+  --color-accent: #f472b6;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
 }
 
 // Legacy SCSS variables for compatibility
-$blue: #2563eb;
-$black: #0f172a;
-$darkerGray: #1e293b;
-$darkGray: #334155;
-$gray: #64748b;
-$lightGray: #e2e8f0;
+$blue: #7c3aed;
+$black: #0d0d17;
+$darkerGray: #15151f;
+$darkGray: #1f1f2e;
+$gray: #6a6a85;
+$lightGray: #26263a;
 $white: #ffffff;
 
 $base-font: var(--font-sans);
 $code-font: var(--font-mono);
 
-$base-font-size: 16px;
-$small-font-size: 14px;
+$base-font-size: 17px;
+$small-font-size: 15px;
 
 $base-color: var(--color-text);
 $base-lighten-color: var(--color-text-soft);
@@ -81,7 +87,7 @@ $blockquote-border-color: var(--color-border);
 $footnote-link-border-color: var(--color-border);
 $footnote-link-background-over-color: var(--color-bg-soft);
 
-$selection-background-color: var(--color-bg-mute);
+$selection-background-color: var(--color-primary-bg);
 
 $tag-index-label-background-color: var(--color-bg-mute);
 $tag-index-count-background-color: var(--color-bg-soft);
