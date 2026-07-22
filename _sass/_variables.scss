@@ -1,65 +1,93 @@
-
 //
 // VARIABLES
 //
 
-// Colors
-$blue: $oc-blue-8;
+// CSS Custom Properties for light/dark mode
+:root {
+  --color-bg: #ffffff;
+  --color-bg-soft: #f8f9fa;
+  --color-bg-mute: #f1f3f5;
+  --color-text: #2d3436;
+  --color-text-soft: #636e72;
+  --color-text-mute: #b2bec3;
+  --color-border: #e9ecef;
+  --color-primary: #2563eb;
+  --color-primary-soft: #3b82f6;
+  --color-primary-bg: rgba(37, 99, 235, 0.08);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-serif: "Noto Serif", "PT Serif", "Songti SC", SimSun, serif;
+  --font-mono: "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
+  --transition: 0.2s ease;
+}
 
-// Grays
-$black: #000;
-$darkerGray: #222;
-$darkGray: #333;
-$gray: #666;
-$lightGray: #eee;
-$white: #fff;
+[data-theme="dark"] {
+  --color-bg: #0f172a;
+  --color-bg-soft: #1e293b;
+  --color-bg-mute: #334155;
+  --color-text: #f1f5f9;
+  --color-text-soft: #94a3b8;
+  --color-text-mute: #64748b;
+  --color-border: #334155;
+  --color-primary: #60a5fa;
+  --color-primary-soft: #93c5fd;
+  --color-primary-bg: rgba(96, 165, 250, 0.12);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
+}
 
-// Font stacks
-$helvetica: Helvetica, Arial, sans-serif;
-$helveticaNeue: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$georgia: Georgia, serif;
+// Legacy SCSS variables for compatibility
+$blue: #2563eb;
+$black: #0f172a;
+$darkerGray: #1e293b;
+$darkGray: #334155;
+$gray: #64748b;
+$lightGray: #e2e8f0;
+$white: #ffffff;
 
-// Fonts
-$base-font: "Noto Serif","PT Serif",source-han-serif-sc, "Source Han Serif SC", "Source Han Serif CN", "Source Han Serif TC", "Source Han Serif TW", "Source Han Serif","Songti SC", SimSon, serif;
-$code-font: 'Menlo', 'Courier New', 'Monaco', 'Spoqa Han Sans', monospace;
+$base-font: var(--font-sans);
+$code-font: var(--font-mono);
 
-// Font sizes
 $base-font-size: 16px;
 $small-font-size: 14px;
 
-// Colors
-$base-color: $oc-gray-8;
-$base-lighten-color: $oc-gray-6;
-$base-lightener-color: $oc-gray-4;
+$base-color: var(--color-text);
+$base-lighten-color: var(--color-text-soft);
+$base-lightener-color: var(--color-text-mute);
 
-$background-color: $oc-gray-0;
-$background-lighten-color: #f8f9fa6b;
+$background-color: var(--color-bg);
+$background-lighten-color: var(--color-bg-soft);
 
-$text-color: $base-color;
-$link-color: $oc-blue-8;
-$link-lighten-color: $oc-blue-6;
-$link-bghv-color: $oc-blue-0;
-$divider-color: $oc-gray-1;
+$text-color: var(--color-text);
+$link-color: var(--color-primary);
+$link-lighten-color: var(--color-primary-soft);
+$link-bghv-color: var(--color-primary-bg);
+$divider-color: var(--color-border);
 
-$error-color:$oc-blue-8;
+$error-color: var(--color-primary);
 
-$table-border-color: $oc-gray-2;
-$table-background-color: $oc-gray-1;
+$table-border-color: var(--color-border);
+$table-background-color: var(--color-bg-soft);
 
-$blockquote-color: $base-lighten-color;
-$blockquote-border-color: $oc-gray-3;
+$blockquote-color: var(--color-text-soft);
+$blockquote-border-color: var(--color-border);
 
-$footnote-link-border-color: $oc-gray-1;
-$footnote-link-background-over-color: $oc-gray-1;
+$footnote-link-border-color: var(--color-border);
+$footnote-link-background-over-color: var(--color-bg-soft);
 
-// $selection-color: $oc-black;
-$selection-background-color: $oc-gray-3;
+$selection-background-color: var(--color-bg-mute);
 
-$tag-index-label-background-color: $oc-gray-2;
-$tag-index-count-background-color: #868e961a;
+$tag-index-label-background-color: var(--color-bg-mute);
+$tag-index-count-background-color: var(--color-bg-soft);
 
-$footer-border-color: $oc-gray-2;
-$footer-background-color: $oc-gray-0;
+$footer-border-color: var(--color-border);
+$footer-background-color: var(--color-bg-soft);
 
 // List
 $li-bottom-space: 0.4em;
@@ -84,7 +112,13 @@ $dd-position: $dt-width+$dt-dd-space;
 
 // Mobile breakpoints
 @mixin mobile {
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 768px) {
     @content;
   }
 }

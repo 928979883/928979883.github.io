@@ -1,29 +1,15 @@
-<div class="wrapper-sidebar">
-  <header class="sidebar clearfix">
-    <div class="site-info">
-      {% if site.avatar %}
-        <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
-      {% endif %} 
-      <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
-      <p class="site-description">{{ site.description }}</p>
-    </div>
-  </header>
+<div class="nav">
+  <a href="{{ site.baseurl }}/">
+    <img class="nav-logo" src="{{ site.baseurl }}/images/favicon.png" alt="{{ site.name }}" loading="lazy" />
+  </a>
 
-  <div class="navlist">
-    <nav>
-      {% for nav in site.navigation %}
+  <div class="nav-links">
+    {% for nav in site.data.nav %}
       {% if nav.url contains 'http://' or nav.url contains 'https://' %}
-      <a href="{{ nav.url }}">{{ nav.name }}</a>
+        <a class="nav-link" href="{{ nav.url }}" target="_blank">{{ nav.name }}</a>
       {% else %}
-      <a href="{{ site.baseurl }}{{ nav.url }}">{{ nav.name }}</a>
+        <a class="nav-link" href="{{ site.baseurl }}{{ nav.url }}">{{ nav.name }}</a>
       {% endif %}
-      {% endfor %}
-    </nav>
-  </div>
-
-  <div class="wrapper-footer-desktop">
-    <footer class="footer">
-      {% include footer.html %}
-    </footer>
+    {% endfor %}
   </div>
 </div>
